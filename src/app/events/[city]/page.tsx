@@ -2,17 +2,17 @@ import EventsList from "@/components/events-list";
 import H1 from "@/components/h1";
 import { EventoEvent } from "@/lib/types";
 
-type EventPageProps = {
+type EventsPageProps = {
   params: {
     city: string;
   };
 };
 
-export default async function EventsPage({ params }: EventPageProps) {
+export default async function EventsPage({ params }: EventsPageProps) {
   const city = params.city;
 
   const res = await fetch(
-    `https://bytegrad.com/course-assets/projects/evento/api/events?city=${"austin"}`
+    `https://bytegrad.com/course-assets/projects/evento/api/events?city=${city}`
   );
 
   const events: EventoEvent[] = await res.json();
