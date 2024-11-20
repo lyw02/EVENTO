@@ -1,5 +1,5 @@
 import H1 from "@/components/h1";
-import { getEvent } from "@/lib/utils";
+import { getEvent } from "@/lib/server-utils";
 import Image from "next/image";
 
 type EventPageProps = {
@@ -14,6 +14,13 @@ export const generateMetedata = async ({ params }: EventPageProps) => {
     title: event.name,
   };
 };
+
+export const generateStaticParams = async () => {
+  // top popular for SSG
+  return [{
+    slug: "3d-animation-workshop"
+  }]
+}
 
 export default async function EventPage({ params }: EventPageProps) {
   const event = await getEvent(params.slug);
