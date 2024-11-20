@@ -1,21 +1,24 @@
 import H1 from "@/components/h1";
 import { EventoEvent } from "@/lib/types";
+import { capitalize, getEvent } from "@/lib/utils";
 import Image from "next/image";
 
-type EventsPageProps = {
+type EventPageProps = {
   params: {
     slug: string;
   };
 };
 
-export default async function EventPage({ params }: EventsPageProps) {
-  const slug = params.slug;
+export const generateMetedata = async ({ params }: EventPageProps) => {
+  const event = await getEvent(params.slug);
+  return {
+    title: event.name,
+  };
+};
 
-  const res = await fetch(
-    `https://bytegrad.com/course-assets/projects/evento/api/events/${slug}`
-  );
+export default async function EventPage({ params }: EventPageProps) {
+  const event = await getEvent(params.slug);
 
-  const event: EventoEvent = await res.json();
   return (
     <main className="relative">
       <section className="relative overflow-hidden flex justify-center items-center py-14 md:py20">
