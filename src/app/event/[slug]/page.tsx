@@ -1,6 +1,5 @@
 import H1 from "@/components/h1";
-import { EventoEvent } from "@/lib/types";
-import { capitalize, getEvent } from "@/lib/utils";
+import { getEvent } from "@/lib/utils";
 import Image from "next/image";
 
 type EventPageProps = {
